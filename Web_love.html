@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱宝宝 - 完美爱心</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe8e8, #ffc6d3);
+            font-family: 'Ma Shan Zheng', cursive, 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        /* 正确的心形绘制方法 - 使用长方形 */
+        .heart-container {
+            position: relative;
+            width: 280px;
+            height: 260px;
+            margin: 60px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .heart {
+            position: absolute;
+            background: #ff4d6d;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+        }
+        
+        /* 左边的长方形 - 旋转-45度 */
+        .heart-left {
+            width: 140px;
+            height: 220px;
+            bottom: 70px; /* 向上调整70px */
+            right: 41px;
+            transform-origin: bottom right;
+            transform: rotate(-45deg);
+            border-radius: 140px 140px 0 0;
+        }
+        
+        /* 右边的长方形 - 旋转45度 */
+        .heart-right {
+            width: 140px;
+            height: 220px;
+            bottom: 70px; /* 向上调整70px */
+            left: 41px;
+            transform-origin: bottom left;
+            transform: rotate(45deg);
+            border-radius: 140px 140px 0 0;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 42px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            letter-spacing: 4px;
+            width: 100%;
+            text-align: center;
+            padding-top: 20px; /* 微调垂直位置 */
+        }
+        
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .mini-heart {
+            position: absolute;
+            font-size: 24px; /* 默认大小 */
+            color: #ff4d6d;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .title {
+            font-size: 36px;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .poem {
+            font-size: 20px;
+            color: #d64d7e;
+            line-height: 1.8;
+            margin-top: 30px;
+            max-width: 500px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+        
+        .instructions {
+            margin-top: 20px;
+            color: #ff4d6d;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 500px;
+        }
+        
+        @media (max-width: 600px) {
+            .heart-container {
+                width: 200px;
+                height: 180px;
+            }
+            
+            .heart-left, .heart-right {
+                width: 100px;
+                height: 160px;
+            }
+            
+            .heart-left {
+                right: 29px;
+                bottom: 50px; /* 移动端也相应调整 */
+            }
+            
+            .heart-right {
+                left: 29px;
+                bottom: 50px; /* 移动端也相应调整 */
+            }
+            
+            .message {
+                font-size: 30px;
+                padding-top: 15px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .poem {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">❤️ 献给最爱的宝宝 ❤️</h1>
+        
+        <div class="heart-container">
+            <div class="heart heart-left"></div>
+            <div class="heart heart-right"></div>
+            <div class="message">爱宝宝</div>
+        </div>
+        
+        <div class="poem">
+            <p>你是我生命中的光芒，</p>
+            <p>如同这颗心般炽热明亮。</p>
+            <p>每一天因你而更加美好，</p>
+            <p>爱你是我最幸福的决定。</p>
+        </div>
+        
+        <div class="hearts" id="miniHearts"></div>
+    </div>
+
+    <script>
+        // 创建漂浮的小爱心
+        function createMiniHearts() {
+            const container = document.getElementById('miniHearts');
+            const heartCount = 40;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('mini-heart');
+                heart.innerHTML = '❤'; // 使用爱心字符
+                
+                // 随机大小
+                const size = Math.random() * 25 + 15;
+                const left = Math.random() * 100;
+                
+                heart.style.fontSize = `${size}px`;
+                heart.style.left = `${left}vw`;
+                heart.style.top = `${Math.random() * 100 + 100}vh`;
+                heart.style.animation = `float ${Math.random() * 5 + 5}s linear infinite`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // 随机颜色
+                const colors = ['#ff8fa3', '#ff4d6d', '#ffacc7', '#ff758c', '#e91e63', '#c2185b'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // 页面加载后创建小爱心
+        window.addEventListener('load', createMiniHearts);
+    </script>
+</body>
+</html>
